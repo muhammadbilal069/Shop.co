@@ -74,7 +74,7 @@ function Navbar() {
   useEffect(() => {
     if (searchQuery.trim().length > 1) {
       setIsSearching(true);
-      fetch(`http://localhost:5000/api/products?search=${encodeURIComponent(searchQuery)}`)
+      fetch(`https://shop-co-backend-sigma.vercel.app/api/products?search=${encodeURIComponent(searchQuery)}`)
         .then((res) => res.json())
         .then((data) => {
           // Response limit to 5 items for clean dropdown

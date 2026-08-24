@@ -8,7 +8,7 @@ function TopSelling() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/products/top-selling")
+    fetch("https://shop-co-backend-sigma.vercel.app/api/products/top-selling")
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data) && data.length > 0) {
