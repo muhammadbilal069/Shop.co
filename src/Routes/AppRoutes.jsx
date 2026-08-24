@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 
-import TopBar from "../Components/TopBar/TopBar";
+import TopBar from "../components/TopBar/TopBar";
 import Navbar from "../components/Navbar/Navbar";
 import Hero from "../components/Hero/Hero";
 import Brands from "../components/Brands/Brands";
@@ -45,16 +45,16 @@ function AppRoutes() {
       <Route
         path="/product/:id"
         element={<ProductDetail />}
-        
+
       />
 
       <Route
-  path="/shop"
-  element={<Shop />}
-/>
+        path="/shop"
+        element={<Shop />}
+      />
 
-     <Route path="/cart" element={<Cart />}
-     />
+      <Route path="/cart" element={<Cart />}
+      />
 
 
     </Routes>
