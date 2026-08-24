@@ -9,7 +9,7 @@ function NewArrivals() {
 
   // Server se New Arrivals ka data lena
   useEffect(() => {
-    fetch("http://localhost:5000/api/products/new-arrivals")
+    fetch("https://shop-co-backend-sigma.vercel.app/api/products/new-arrivals")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
