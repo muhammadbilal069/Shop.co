@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./ProductReview.css";
-
-import filterIcon from "../../assets/filtericon.png";
+import filterIcon from "../../assets/sort-arrow.png";
 import sortArrow from "../../assets/sort-arrow.png";
 
 function ProductReviews() {
@@ -15,7 +14,7 @@ function ProductReviews() {
     if (!id) return;
 
     setLoading(true);
-    fetch(`http://localhost:5000/api/products/${id}/reviews`)
+    fetch(`https://shop-co-backend-sigma.vercel.app/api/products/${id}/reviews`)
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data) && data.length > 0) {
