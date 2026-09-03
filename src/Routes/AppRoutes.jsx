@@ -14,6 +14,8 @@ import ProductDetail from "../components/ProductDetail/ProductDetail";
 
 import Shop from "../pages/Shop/Shop";
 import Cart from "../pages/Cart/Cart";
+import Login from "../pages/Login/Login";
+import Signup from "../pages/SignUp/SignUp";
 
 
 function AppRoutes() {
@@ -48,13 +50,20 @@ function AppRoutes() {
 
       />
 
+      {/* Product Shop Paage */}
       <Route
         path="/shop"
         element={<Shop />}
       />
 
+       {/* Product Cart Page */}
       <Route path="/cart" element={<Cart />}
       />
+
+
+     {/* Login Page */}
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
 
 
     </Routes>

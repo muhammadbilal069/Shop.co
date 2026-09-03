@@ -13,7 +13,7 @@ function TopBar() {
     <div className="top-bar">
       <p className="top-bar-text">
         Sign up and get 20% off to your first order.
-        <a href="#signup">Sign Up Now</a>
+        <a href="/signup">Sign Up Now</a>
       </p>
 
       <button

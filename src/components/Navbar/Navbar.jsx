@@ -185,7 +185,7 @@ function Navbar() {
           </button>
         </div>
 
-        <button className="nav-icon" aria-label="Account" onClick={() => navigate()}>
+        <button className="nav-icon" aria-label="Account" onClick={() => navigate("/login")}>
           <IoPersonOutline />
         </button>
       </div>
