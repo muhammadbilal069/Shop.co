@@ -133,9 +133,19 @@ function Footer() {
 
       <div className="footer-bottom">
 
-        <p>
-          Shop.co © 2000-2023, All Rights Reserved
-        </p>
+        <div className="footer-bottom-left">
+          <p>
+            Shop.co © 2000-2023, All Rights Reserved
+          </p>
+          <a 
+            href="https://your-admin-panel.vercel.app/login" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="footer-admin-link"
+          >
+            Admin Panel
+          </a>
+        </div>
 
        <div className="payment-methods">
 

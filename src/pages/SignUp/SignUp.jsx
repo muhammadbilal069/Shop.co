@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import { 
   IoPersonOutline, 
   IoMailOutline, 
   IoLockClosedOutline, 
   IoEyeOutline, 
-  IoEyeOffOutline 
+  IoEyeOffOutline,
+  IoCheckmarkCircleOutline,
+  IoAlertCircleOutline
 } from "react-icons/io5";
 import "./SignUp.css";
 
@@ -17,6 +20,10 @@ const Signup = () => {
     password: "",
     agreeTerms: false,
   });
+  
+  // Notification State
+  const [notification, setNotification] = useState({ show: false, message: "", type: "" });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -26,16 +33,43 @@ const Signup = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const showPopup = (message, type) => {
+    setNotification({ show: true, message, type });
+    if (type === "success") {
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000); // 2 second baad login page par bhej dega
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Signup submitted:", formData);
-    // Backend API integration baad mein yahan hogi
+
+    try {
+      const response = await axios.post("http://localhost:5000/auth/signup", {
+        name: formData.fullName,
+        email: formData.email,
+        password: formData.password,
+      });
+
+      showPopup("Account created successfully! Redirecting to login...", "success");
+    } catch (err) {
+      const errorMsg = err.response?.data?.errors?.[0]?.msg || err.response?.data?.message || "Something went wrong";
+      showPopup(errorMsg, "error");
+    }
   };
 
   return (
     <div className="signup-page">
+      {/* Custom Popup Notification */}
+      {notification.show && (
+        <div className={`custom-popup ${notification.type}`}>
+          {notification.type === "success" ? <IoCheckmarkCircleOutline /> : <IoAlertCircleOutline />}
+          <span>{notification.message}</span>
+        </div>
+      )}
+
       <div className="signup-container">
-        
         {/* Left Side (Banner) */}
         <div className="signup-banner">
           <div className="banner-overlay">
@@ -59,8 +93,6 @@ const Signup = () => {
           </p>
 
           <form onSubmit={handleSubmit} className="signup-form">
-
-            {/* Full Name */}
             <div className="input-group">
               <label htmlFor="fullName">Full Name</label>
               <div className="input-wrapper">
@@ -77,7 +109,6 @@ const Signup = () => {
               </div>
             </div>
 
-            {/* Email Address */}
             <div className="input-group">
               <label htmlFor="email">Email Address</label>
               <div className="input-wrapper">
@@ -94,7 +125,6 @@ const Signup = () => {
               </div>
             </div>
 
-            {/* Password */}
             <div className="input-group">
               <label htmlFor="password">Password</label>
               <div className="input-wrapper">
@@ -112,14 +142,12 @@ const Signup = () => {
                   type="button"
                   className="password-toggle"
                   onClick={() => setShowPassword(!showPassword)}
-                  aria-label="Toggle password visibility"
                 >
                   {showPassword ? <IoEyeOffOutline /> : <IoEyeOutline />}
                 </button>
               </div>
             </div>
 
-            {/* Terms and Conditions Checkbox */}
             <div className="signup-options">
               <label className="terms-checkbox">
                 <input
@@ -135,19 +163,16 @@ const Signup = () => {
               </label>
             </div>
 
-            {/* Submit Button */}
             <button type="submit" className="signup-btn">
               Create Account
             </button>
           </form>
 
-          {/* Login Link */}
           <p className="login-redirect-text">
             Already have an account?
             <Link to="/login"> Log In</Link>
           </p>
         </div>
-
       </div>
     </div>
   );

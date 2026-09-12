@@ -285,6 +285,25 @@
 }
 
 
+.footer-bottom-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.footer-admin-link {
+  font-size: 11px;
+  color: #888888;
+  opacity: 0.3;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+  width: fit-content;
+}
+
+.footer-admin-link:hover {
+  opacity: 1;
+}
+
    /* Mobile Respon */
 
 @media (max-width: 600px) {
