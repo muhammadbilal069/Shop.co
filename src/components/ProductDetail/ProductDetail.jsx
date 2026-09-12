@@ -24,8 +24,13 @@ function ProductDetail() {
   const [quantity, setQuantity] = useState(1);
   const [mainImage, setMainImage] = useState("");
 
-  // Server sw product-details ka data  fetch krna 
+  // Server se product-details ka data fetch krna with safety check
   useEffect(() => {
+    if (!id || id === "undefined" || id === "null") {
+      setLoading(false);
+      return;
+    }
+
     setLoading(true);
     fetch(`https://shop-co-backend-sigma.vercel.app/api/products/${id}`)
       .then((res) => {
@@ -185,8 +190,9 @@ function ProductDetail() {
             <div className="thumbnail-list">
               {galleryImages.map((imgUrl, index) => (
                 <div
-                  className={`thumbnail ${mainImage === imgUrl ? "active-thumbnail" : ""
-                    }`}
+                  className={`thumbnail ${
+                    mainImage === imgUrl ? "active-thumbnail" : ""
+                  }`}
                   key={index}
                   onClick={() => setMainImage(imgUrl)}
                 >
@@ -234,8 +240,9 @@ function ProductDetail() {
                 {colorsList.map((col, idx) => (
                   <button
                     key={idx}
-                    className={`color-btn ${selectedColor === col ? "selected-color" : ""
-                      }`}
+                    className={`color-btn ${
+                      selectedColor === col ? "selected-color" : ""
+                    }`}
                     style={{
                       backgroundColor: col,
                       width: "37px",

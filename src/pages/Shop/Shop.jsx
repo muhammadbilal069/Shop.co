@@ -87,8 +87,12 @@ function Shop() {
     });
   };
 
-  /* Product Click Handler with Instant Top Scroll */
-  const handleProductClick = (productId) => {
+  /* Product Click Handler with Safety Check & Instant Top Scroll */
+  const handleProductClick = (productId, productObj) => {
+    if (!productId || productId === "undefined") {
+      console.error("Shop Product ID missing hai:", productObj);
+      return;
+    }
     navigate(`/product/${productId}`);
     window.scrollTo(0, 0); // Directly detail page ke top par scroll karega
   };
@@ -329,8 +333,8 @@ function Shop() {
                     return (
                       <div
                         className="shop-product-card"
-                        key={productId}
-                        onClick={() => handleProductClick(productId)}
+                        key={productId || Math.random()}
+                        onClick={() => handleProductClick(productId, product)}
                         style={{ cursor: "pointer" }}
                       >
                         <div className="shop-product-image">

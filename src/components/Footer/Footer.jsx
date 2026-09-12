@@ -138,7 +138,7 @@ function Footer() {
             Shop.co © 2000-2023, All Rights Reserved
           </p>
           <a 
-            href="https://your-admin-panel.vercel.app/login" 
+            href="https://shop-co-admin-zeta.vercel.app/login" 
             target="_blank" 
             rel="noopener noreferrer"
             className="footer-admin-link"

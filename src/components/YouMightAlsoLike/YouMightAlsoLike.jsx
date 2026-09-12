@@ -40,8 +40,12 @@ function YouMightAlsoLike() {
           return (
             <div
               className="product-card"
-              key={productId}
+              key={productId || Math.random()}
               onClick={() => {
+                if (!productId || productId === "undefined") {
+                  console.error("Product ID missing hai:", product);
+                  return;
+                }
                 navigate(`/product/${productId}`);
                 window.scrollTo({ top: 0, behavior: "smooth" });
               }}
