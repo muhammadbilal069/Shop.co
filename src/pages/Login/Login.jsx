@@ -36,10 +36,11 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:5000/auth/login", {
-        email: formData.email,
-        password: formData.password,
-      });
+      // handleSubmit function ke andar axios request ko yeh kar dein:
+const response = await axios.post("https://shop-co-backend-sigma.vercel.app/auth/login", {
+  email: formData.email,
+  password: formData.password,
+});
 
       localStorage.setItem("token", response.data.token);
       showPopup("Login successful! Welcome back.", "success");
