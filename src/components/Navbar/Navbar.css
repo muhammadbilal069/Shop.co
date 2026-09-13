@@ -11,7 +11,7 @@
   box-sizing: border-box;
   position: relative;
   z-index: 50;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 /* Sticky Navbar on Scroll */
@@ -20,7 +20,8 @@
   top: 0;
   left: 0;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  animation: slideDown 0.3s ease-in-out;
+  transform: translateZ(0); 
+  will-change: transform, box-shadow;
 }
 
 @keyframes slideDown {
