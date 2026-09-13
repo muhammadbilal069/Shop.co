@@ -32,23 +32,40 @@ const Login = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
 
-    try {
-      // handleSubmit function ke andar axios request ko yeh kar dein:
-const response = await axios.post("https://shop-co-backend-sigma.vercel.app/auth/login", {
-  email: formData.email,
-  password: formData.password,
-});
+//     try {
+//       // handleSubmit function ke andar axios request ko yeh kar dein:
+// const response = await axios.post("https://shop-co-backend-sigma.vercel.app/auth/login", {
+//   email: formData.email,
+//   password: formData.password,
+// });
 
-      localStorage.setItem("token", response.data.token);
-      showPopup("Login successful! Welcome back.", "success");
-    } catch (err) {
-      const errorMsg = err.response?.data?.message || "Invalid email or password";
-      showPopup(errorMsg, "error");
-    }
-  };
+//       localStorage.setItem("token", response.data.token);
+//       showPopup("Login successful! Welcome back.", "success");
+//     } catch (err) {
+//       const errorMsg = err.response?.data?.message || "Invalid email or password";
+//       showPopup(errorMsg, "error");
+//     }
+//   };
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const response = await axios.post("https://shop-co-backend-sigma.vercel.app/auth/login", {
+      email: formData.email,
+      password: formData.password,
+    });
+
+    localStorage.setItem("token", response.data.token);
+    showPopup("Login successful! Welcome back.", "success");
+  } catch (err) {
+    const errorMsg = err.response?.data?.message || "Invalid email or password";
+    showPopup(errorMsg, "error");
+  }
+};
 
   return (
     <div className="login-page">

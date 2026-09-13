@@ -42,22 +42,40 @@ const Signup = () => {
     }
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     const response = await axios.post("http://localhost:5000/auth/signup", {
+  //       name: formData.fullName,
+  //       email: formData.email,
+  //       password: formData.password,
+  //     });
+
+  //     showPopup("Account created successfully! Redirecting to login...", "success");
+  //   } catch (err) {
+  //     const errorMsg = err.response?.data?.errors?.[0]?.msg || err.response?.data?.message || "Something went wrong";
+  //     showPopup(errorMsg, "error");
+  //   }
+  // };
+
+
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    try {
-      const response = await axios.post("http://localhost:5000/auth/signup", {
-        name: formData.fullName,
-        email: formData.email,
-        password: formData.password,
-      });
+  try {
+    const response = await axios.post("https://shop-co-backend-sigma.vercel.app/auth/signup", {
+      name: formData.fullName,
+      email: formData.email,
+      password: formData.password,
+    });
 
-      showPopup("Account created successfully! Redirecting to login...", "success");
-    } catch (err) {
-      const errorMsg = err.response?.data?.errors?.[0]?.msg || err.response?.data?.message || "Something went wrong";
-      showPopup(errorMsg, "error");
-    }
-  };
+    showPopup("Account created successfully! Redirecting to login...", "success");
+  } catch (err) {
+    const errorMsg = err.response?.data?.message || "Something went wrong";
+    showPopup(errorMsg, "error");
+  }
+};
 
   return (
     <div className="signup-page">
